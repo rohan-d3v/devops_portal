@@ -1,0 +1,60 @@
+<div class="card">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="text-center">Create new Admin</h3>
+            <div class="alert alert-danger" id="passMatch" style="display:none">
+                Passwords Don't match</div>
+            <form action="/createAdmin" method="post">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            <h4>Name</h4>
+                        </th>
+                        <td><input type="text" class="form-control input-lg" required name="name"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h4>Email</h4>
+                        </th>
+                        <td><input type="text" class="form-control input-lg" required name="email"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h4>Password</h4>
+                        </th>
+                        <td>
+                            <input type="password" class="form-control"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                            title="Password needs to have 8 characters, 1 special, uppercase, lowercase character each and a number"
+                            name="password" id="pass" placeholder="***********" onkeyup="passCheck()">
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <th>
+                            <h4>Confirm Password</h4>
+                        </th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Confirm Password" id="confirm_pass"
+                                required onkeyup="passCheck()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h4>Is Super Admin?</h4>
+                        </th>
+                        <td>
+                            <select class="form-control input-lg" name="superAdmin">
+                                <option selected value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Admin" />
+            </form>
+        </div>
+        <div class="panel-body">
+        </div>
+    </div>
+</div>

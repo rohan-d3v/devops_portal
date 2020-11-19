@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <%- include('./partials/head') %>
+</head>
+
+<body>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Topbar -->
+        <%- include('./partials/navbar') %>
+        <!-- End of Topbar -->
+
+        <!-- Content Wrapper -->
+        <div class="container">
+            <div class="main">
+                <div class="main-content">
+                    <div class="row">
+                        <!--Sidebar -->
+                        <!-- End of Sidebar -->
+
+                        <!-- Content -->
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="panel">
+
+                                    <div class="panel-heading">
+                                        <h2 class="text-center">Update your Account</h2>
+                                        <h4 class="text-center"><%- adminDetails._id %></h4>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <% if (message.length > 0) { %>
+                                            <div class="alert alert-info text-center"><%- message %></div>
+                                            <% } %>
+                                            <div class="alert alert-danger" id="passMatch" style="display:none">
+                                                Passwords Don't match</div>
+                                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" data-toggle="tab" href="#detailsTab"
+                                                        role="tab">Update Profile</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#passwordTab"
+                                                        role="tab">Update Password</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content text-center">
+                                                <div class="tab-pane active" id="detailsTab" role="tabpanel">
+                                                    <form action="/updateUser" method="post">
+                                                        <table class="table table-hover">
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>Name</h4>
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control input-lg"
+                                                                        required name="name"
+                                                                        value=<%- '"'+adminDetails.name+'"' %>>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>Email</h4>
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control input-lg"
+                                                                        required name="email"
+                                                                        value=<%- '"'+adminDetails.email+'"' %>>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <input type="submit" class="btn btn-lg btn-block btn-primary"
+                                                            value="Update Profile" />
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="passwordTab" role="tabpanel">
+                                                    <form action="/updatePass" method="post">
+                                                        <table class="table table-hover">
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>Password</h4>
+                                                                </th>
+                                                                <td>
+                                                                    <input type="password" class="form-control"
+                                                                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                                                                        title="Password needs to have 8 characters, 1 special, uppercase, lowercase character each and a number"
+                                                                        name="password" id="pass"
+                                                                        placeholder="***********" onkeyup="passCheck()">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>Confirm Password</h4>
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Confirm Password" id="confirm_pass"
+                                                                        required onkeyup="passCheck()">
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary"
+                                                            value="Update Password" />
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Content -->
+                        </div>
+                        <!-- End of Content -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Content Wrapper -->
+
+
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- footer -->
+    <%- include('./partials/footer') %>
+    <!-- end footer -->
+
+    <!-- scripts -->
+    <%- include('./partials/scripts') %>
+    <script src="assets/js/passwordhelper.js"></script>
+    <!-- end scripts -->
+
+</body>
+
+</html>

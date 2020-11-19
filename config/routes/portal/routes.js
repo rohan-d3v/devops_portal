@@ -2,7 +2,7 @@ module.exports = function (app, passport) {
 
     app.get('/dashboard', isLoggedIn, function (req, res) {
         var message = ""; if(req.query.message) message = req.query.smessage
-            res.render('portal/dashboard', { message: message, user: req.user.name, title: 'Dashboard' });
+            res.render('portal/dashboard', { message: message, user: req.user.name, admin: req.user.admin, title: 'Dashboard' });
     });
     
 };

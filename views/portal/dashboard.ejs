@@ -4,8 +4,8 @@
 <head>
     <%- include('./partials/head') %>
     <style>
-        #dataTable_filter{
-            float:right
+        #dataTable_filter {
+            float: right
         }
     </style>
 </head>
@@ -26,7 +26,7 @@
                     <div class="row">
 
                         <!-- Sidebar -->
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="card">
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -59,10 +59,8 @@
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%= message %></div>
                             <% } %>
-
-                            
-                            <!-- End of Content -->
                         </div>
+                        <!-- End of Content -->
 
                     </div>
                 </div>
@@ -80,7 +78,8 @@
         <%- include('./partials/scripts') %>
 
         <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
         <script src="assets/js/datatables/datatables-search.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
