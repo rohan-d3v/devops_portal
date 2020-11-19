@@ -46,7 +46,7 @@ pkg.scheduler.scheduleJob('0 0 * * *', function () {
                     time_in: null,
                     time_out: null
                 }
-                db.get('attendance').insert(dataObj, {})
+                db.get('timesheets').insert(dataObj, {})
             }
         }
     })
