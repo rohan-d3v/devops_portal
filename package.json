@@ -1,0 +1,36 @@
+{
+  "name": "devops_portal",
+  "version": "1.0.0",
+  "description": "devOps portal implementation for Sundar Infographic Analytics",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohan-uxdev/devops_portal.git"
+  },
+  "author": "Rohan Krishna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rohan-uxdev/devops_portal/issues"
+  },
+  "homepage": "https://github.com/rohan-uxdev/devops_portal#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.15",
+    "monk": "^7.3.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.16",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "url": "^0.11.0"
+  }
+}
