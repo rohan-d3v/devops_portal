@@ -3,6 +3,7 @@ module.exports = {
     mongoose : require('mongoose'),
     passport : require('passport'),
     morgan : require('morgan'),
+    mongodb: require('mongodb'),
     flash : require('connect-flash'),
     fs : require('fs'),
     path : require('path'),
@@ -13,4 +14,5 @@ module.exports = {
     monk : require('monk'),
     nodemailer : require('nodemailer'),
     bcrypt : require('bcrypt'),
+    scheduler: require('node-schedule')
 }

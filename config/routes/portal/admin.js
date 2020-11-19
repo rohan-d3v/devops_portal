@@ -1,4 +1,4 @@
-const ObjectId = require('mongodb').ObjectID, userModel = require('../../models/user');
+const userModel = require('../../models/user');
 module.exports = function (app, passport) {
 
     /**Admin (Sub) Actions**/

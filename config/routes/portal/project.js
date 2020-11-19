@@ -1,5 +1,4 @@
-const ObjectId = require('mongodb').ObjectID
-module.exports = function (app, passport) {
+module.exports = function (app, passport, mongodb) {
     app.get('/manageProjects', isLoggedIn, isAdmin, (req, res) => {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('projects').find({}, {}, (e, projectlist) => {
@@ -14,8 +13,14 @@ module.exports = function (app, passport) {
     app.post('/createProject', isLoggedIn, isAdmin, (req,res)=>{
         req.db.get('projects').findOne({name: req.body.project_name},{}, (e, docs)=>{
             if (!docs) {
+                assignments = []
+                if(Array.isArray(req.body.assignmentList)){
+                    for (j = 0; j < req.body.assignmentList; j++){
+                        assignments[j] = new mongodb.ObjectID(req.body.assignmentList[j])
+                    }
+                } else assignments[0] = new mongodb.ObjectID(req.body.assignmentList)
                 req.db.get('projects').insert({
-                    name: req.body.project_name, progress:'Yet to Start', users: req.body.assignmentList
+                    name: req.body.project_name, progress:'Yet to Start', users: assignments
                 }, (e, docs) => {
                     res.redirect('/manageProjects?message=Project Created Successfully')
                 })
