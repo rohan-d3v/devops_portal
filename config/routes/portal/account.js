@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
             });
         })
     });
-    app.post('/updateUser', isLoggedIn, (req, res) => {
+    app.post('/updateProfile', isLoggedIn, (req, res) => {
         req.db.get('users').findOneAndUpdate({ _id: req.user._id }, {
             $set: {
                 name: req.body.name,

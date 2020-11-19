@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+<head>
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <%- include('../../partials/navbar') %>
+        <!-- END NAVBAR -->
+
+        <div class="container">
+            <div class="main">
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <% if (message.length > 0) { %>
+                            <div class="alert alert-info text-center"><%- message %></div>
+                            <% } %>
+                            <div class="alert alert-danger" id="passMatch" style="display:none">
+                                Passwords Don't match</div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="col-md-12 text-center">
+                                        <h3 class="display-6 text-center"><%- person.name %></h3>
+                                        <h4 class="display-6 text-center"><%- person._id %></h4>
+                                        <a href="/manageUsers" class=" btn btn-lg btn-secondary text-center">Go
+                                            back</a>
+                                    </div>
+                                </div>
+                                <div class="panel-body" style="margin-top:25%">
+                                    <div class="tab-content text-center">
+                                        <div class="tab-pane active" id="updateInfo" role="tabpanel">
+                                            <form action="/updateUser" method="post">
+                                                <table class="table table-hover">
+                                                    <input type="hidden" name="uid" value=<%- person._id %>>
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Name</h4>
+                                                        </th>
+                                                        <td>
+                                                            <input type="text" class="form-control input-lg" required
+                                                                name="name" value=<%- '"'+person.name+'"' %>>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Email</h4>
+                                                        </th>
+                                                        <td>
+                                                            <input type="text" class="form-control input-lg" required
+                                                                name="email" value=<%- '"'+person.email+'"' %>>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Is Super Admin?</h4>
+                                                        </th>
+                                                        <td>
+                                                            <% var optA = 'selected', optB = ''
+                                                            if(person.superAdmin){ optA = '', optB = 'selected'}
+                                                            %>
+                                                            <select class="form-control input-lg" name="superAdmin">
+                                                                <option <%- optA %> value="false">No</option>
+                                                                <option <%- optB %> value="true">Yes</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="submit" class="btn btn-lg btn-block btn-primary"
+                                                    value="Update Admin" />
+                                            </form>
+                                            <hr>
+                                            <a data-toggle="tab" role="tab" href="#updatePass"
+                                                class="btn btn-lg btn-block btn-info">Update Admin Password</a>
+                                        </div>
+                                        <div class="tab-pane" id="updatePass" role="tabpanel">
+                                            <form action="/updateUserPass" method="post">
+                                                <input type="hidden" name="uid" value=<%- person._id %>>
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Password</h4>
+                                                        </th>
+                                                        <td>
+                                                            <input type="password" class="form-control"
+                                                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                                                                title="Password needs to have 8 characters, 1 special, uppercase, lowercase character each and a number"
+                                                                name="password" id="pass" placeholder="***********"
+                                                                onkeyup="passCheck()">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Confirm Password</h4>
+                                                        </th>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Confirm Password" id="confirm_pass"
+                                                                required onkeyup="passCheck()">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="submit" id="passBtn"
+                                                    class="btn btn-lg btn-block btn-primary" value="Update Admin" />
+                                            </form>
+                                            <hr>
+                                            <a data-toggle="tab" role="tab" href="#updateInfo"
+                                                class="btn btn-lg btn-block btn-info">Update Admin Information</a>
+                                        </div>
+                                        <hr>
+                                        <a href="#deleteUserModal" data-toggle="modal"
+                                            class="btn btn-danger btn-lg btn-block">Delete Admin</a>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%- include('components/deleteModal') %>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
+        </div>
+        <!-- END MAIN -->
+
+        <div class="clearfix"></div>
+        <%- include('../../partials/footer') %>
+    </div>
+    <!-- END WRAPPER -->
+    <%- include('../../partials/scripts') %>
+    <script src="assets/js/passwordhelper.js"></script>
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/js/datatables/datatables-search.js"></script>
+</body>
+
+</html>

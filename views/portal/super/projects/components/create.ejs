@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="panel">
+        <div class="panel-heading text-center">
+            <h3>Create new Project</h3>
+
+        </div>
+        <div class="panel-body">
+            <form action="/createProject" method="post">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            <h4>Project Name</h4>
+                        </th>
+                        <td><input type="text" class="form-control input-lg" required name="project_name"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h4>Assign People</h4>
+                        </th>
+                        <td>
+                            <select id="multiple" class="form-control input-lg" name="assignmentList" multiple>
+                                <% 
+                                var list=''
+                                for (var i=0; i < userlist.length; i++){
+                                    list += '<option value='+userlist[i]._id+'>'+userlist[i].name+'</option>'
+                                }
+                                %>
+                                <%- list %>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Project" />
+            </form>
+        </div>
+    </div>
+</div>
+

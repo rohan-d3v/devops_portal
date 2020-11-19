@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 
 <body>
     <!-- WRAPPER -->
     <div id="wrapper">
         <!-- NAVBAR -->
-        <%- include('../partials/navbar') %>
+        <%- include('../../partials/navbar') %>
         <!-- END NAVBAR -->
 
         <div class="container">
@@ -27,14 +27,14 @@
                                     <div class="col-md-12 text-center">
                                         <h3 class="display-6 text-center"><%- person.name %></h3>
                                         <h4 class="display-6 text-center"><%- person._id %></h4>
-                                        <a href="/manageAdmins" class=" btn btn-lg btn-secondary text-center">Go
+                                        <a href="/manageUsers" class=" btn btn-lg btn-secondary text-center">Go
                                             back</a>
                                     </div>
                                 </div>
                                 <div class="panel-body" style="margin-top:25%">
                                     <div class="tab-content text-center">
                                         <div class="tab-pane active" id="updateInfo" role="tabpanel">
-                                            <form action="/updateAdmin" method="post">
+                                            <form action="/updateUser" method="post">
                                                 <table class="table table-hover">
                                                     <input type="hidden" name="uid" value=<%- person._id %>>
                                                     <tr>
@@ -78,7 +78,7 @@
                                                 class="btn btn-lg btn-block btn-info">Update Admin Password</a>
                                         </div>
                                         <div class="tab-pane" id="updatePass" role="tabpanel">
-                                            <form action="/updateAdminPass" method="post">
+                                            <form action="/updateUserPass" method="post">
                                                 <input type="hidden" name="uid" value=<%- person._id %>>
                                                 <table class="table table-hover">
                                                     <tr>
@@ -112,7 +112,7 @@
                                                 class="btn btn-lg btn-block btn-info">Update Admin Information</a>
                                         </div>
                                         <hr>
-                                        <a href="#deleteAdminModal" data-toggle="modal"
+                                        <a href="#deleteUserModal" data-toggle="modal"
                                             class="btn btn-danger btn-lg btn-block">Delete Admin</a>
 
 
@@ -123,7 +123,7 @@
                         </div>
                     </div>
 
-                    <%- include('components/deleteAdmin') %>
+                    <%- include('components/deleteModal') %>
                 </div>
             </div>
             <!-- END MAIN CONTENT -->
@@ -131,10 +131,10 @@
         <!-- END MAIN -->
 
         <div class="clearfix"></div>
-        <%- include('../partials/footer') %>
+        <%- include('../../partials/footer') %>
     </div>
     <!-- END WRAPPER -->
-    <%- include('../partials/scripts') %>
+    <%- include('../../partials/scripts') %>
     <script src="assets/js/passwordhelper.js"></script>
     <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>

@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="panel">
+
+        <div class="panel-heading">
+            <h3 class="text-center">Current Project List</h3>
+            <div class="right">
+                <button type="button" class="btn-toggle-collapse">
+                    <i class="lnr lnr-chevron-up"></i>
+                </button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Progress</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Progress</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <%
+                        var list = '';
+                        for (i = 0; i < projectlist.length; i++) {
+                        list += '<tr>';
+                        list += '<td>' + projectlist[i].name + '</td>';
+                        list += '<td>' + projectlist[i].progress + '</td>';
+                        list += '<td><a class="btn btn-primary btn-block" href="/manageProject?uid='+ projectlist[i]._id + '">View Project</a></td>';
+                        list += '</tr>';
+                        }
+                        %>
+                        <%- list %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

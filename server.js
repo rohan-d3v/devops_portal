@@ -34,29 +34,16 @@ app.set('view engine', 'ejs');
 app.use(pkg.express.static(pkg.path.join(__dirname, 'public')));
 
 /*Routes*/
-/**User Setup**/
-// const userModel = require('./config/models/user')
-// app.get('/createAdmin',  (req,res)=>{
-//     var hashPass = new userModel().generateHash('admin')
-//     var user = {
-//         name: 'admin',
-//         email: 'admin@sia.com',
-//         password: hashPass,
-//         confirm_password: 'admin',
-//         admin: true
-//     }
-//     req.db.get('users').insert(user, (e, docs)=>{
-//         res.send({message: 'Admin Created', date: docs})
-//     })
-// })
 /**Middleware Routes**/
 require('./config/routes/middleware/login')(app, pkg.passport);
 
 /**Portal Routes**/
 require('./config/routes/portal/routes')(app, pkg.passport);
 require('./config/routes/portal/account')(app, pkg.passport);
-/***Super Admin Routes***/
-require('./config/routes/portal/super')(app, pkg.passport);
+
+/***Admin Routes***/
+require('./config/routes/portal/admin')(app, pkg.passport);
+require('./config/routes/portal/project')(app, pkg.passport);
 
 
 /*App Launch*/

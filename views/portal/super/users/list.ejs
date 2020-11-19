@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css"
         rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
     <!-- WRAPPER -->
     <div id="wrapper">
         <!-- NAVBAR -->
-        <%- include('../partials/navbar') %>
+        <%- include('../../partials/navbar') %>
         <!-- END NAVBAR -->
 
         <div class="container-fluid">
@@ -26,11 +26,11 @@
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
-                            <%- include('components/adminList') %>
+                            <%- include('components/list') %>
                         </div>
 
                         <div class="col-md-4">
-                            <%- include('components/createAdmin') %>
+                            <%- include('components/create') %>
                         </div>
                     </div>
 
@@ -41,10 +41,10 @@
         </div>
         <!-- END MAIN -->
         <div class="clearfix"></div>
-        <%- include('../partials/footer') %>
+        <%- include('../../partials/footer') %>
     </div>
     <!-- END WRAPPER -->
-    <%- include('../partials/scripts') %>
+    <%- include('../../partials/scripts') %>
     <script src="assets/js/passwordhelper.js"></script>
     <script src="../assets/js/datatables/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>

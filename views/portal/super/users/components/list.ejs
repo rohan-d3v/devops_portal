@@ -31,13 +31,13 @@
                     <tbody>
                         <%
                         var list = '';
-                        for (i = 0; i < adminlist.length; i++) {
-                        var superAdmin = 'No'; if(adminlist[i].admin) superAdmin = 'Yes';
+                        for (i = 0; i < userlist.length; i++) {
+                        var superAdmin = 'No'; if(userlist[i].admin) superAdmin = 'Yes';
                         list += '<tr>';
-                            list += '<td>' + adminlist[i].name + '</td>';
-                            list += '<td>' + adminlist[i].email+ '</td>';
+                            list += '<td>' + userlist[i].name + '</td>';
+                            list += '<td>' + userlist[i].email+ '</td>';
                             list += '<td>' + superAdmin + '</td>';
-                            list += '<td><a class="btn btn-primary btn-block" href="/manageAdmin?uid='+ adminlist[i]._id + '">View Admin</a></td>';
+                            list += '<td><a class="btn btn-primary btn-block" href="/manageUser?uid='+ userlist[i]._id + '">View Employee</a></td>';
                         list += '</tr>';
                         }
                         %>
