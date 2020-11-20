@@ -1,4 +1,4 @@
-module.exports = (app, passport, scheduler) =>{
+module.exports = (app, passport) =>{
     app.post('/timeTracker',isLoggedIn, (req,res)=>{
         var dataObj = {
             active: true,

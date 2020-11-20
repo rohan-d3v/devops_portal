@@ -5,7 +5,7 @@ module.exports = function (app, passport) {
         req.db.get('users').findOne({ _id: req.user._id }, {}, function (e, docs) {
             req.db.get('timesheets').findOne({employee: req.user._id, date: new Date().toLocaleDateString()}, {}, (e, checkin)=>{
                 res.render('portal/account', {
-                    user: req.user.name, admin: req.user.admin, active: checkin.active,
+                    user: req.user, active: checkin.active,
                     adminDetails: docs, message: flashMessage, title: 'Account'
                 });
             })

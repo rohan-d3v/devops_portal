@@ -3,9 +3,6 @@
 
 <head>
     <%- include('../../partials/head') %>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -15,15 +12,15 @@
         <%- include('../../partials/navbar') %>
         <!-- END NAVBAR -->
 
+        <!-- Sidebar -->
+        <%- include('../../partials/sidebar') %>
+        <!-- End of Sidebar -->
         <div class="container-fluid">
             <div class="main">
                 <div class="main-content">
                     <div class="row">
-                        <!-- Sidebar -->
-
-                        <!-- End of Sidebar -->
-
-                        <div class="col-md-8">
+                        <div class="col-md-2" id="leftSpacer"></div>
+                        <div class="col-md-6" id="left">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
@@ -46,16 +43,7 @@
     </div>
     <!-- END WRAPPER -->
     <%- include('../../partials/scripts') %>
-    <script src="../assets/js/passwordhelper.js"></script>
-    <script src="../assets/js/datatables/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../assets/js/datatables/datatables-search.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script>
-        $("#multiple").select2({
-            allowClear: true
-        });
-    </script>
+    
     </body>
 
 </html>

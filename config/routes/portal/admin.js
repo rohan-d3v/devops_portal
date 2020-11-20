@@ -7,7 +7,7 @@ module.exports = function (app, passport) {
         req.db.get('users').find({}, {}, (e, userlist) => {
             req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
                 res.render('portal/super/users/list', {
-                    user: req.user.name, admin: req.user.admin, active: checkin.active,
+                    user: req.user, active: checkin.active,
                     userlist: userlist, message: message, title: 'Manage Admins'
                 })
             })
@@ -33,7 +33,7 @@ module.exports = function (app, passport) {
             req.db.get('taxFiling').find({}, {}, (e, assignmentList) => {
                 req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
                     res.render('portal/super/users/edit', {
-                        user: req.user.name, admin: req.user.admin, title: 'Edit User', active: checkin.active,
+                        user: req.user, title: 'Edit User', active: checkin.active,
                         person: docs, message: message
                     });
                 })
