@@ -7,9 +7,9 @@
                 </h3>
             </div>
             <div class="modal-body">
-                <h4 class="text-center">Are you sure you want to delete <%- person.name %>?</h4>
+                <h4 class="text-center">Are you sure you want to delete <%- project.name %>?</h4>
                 <form action="deleteUser" method="post">
-                    <input type="hidden" name="uid" value=<%- person._id %>>
+                    <input type="hidden" name="uid" value=<%- project._id %>>
                     <input type="submit" class="btn btn-lg btn-block btn-danger"
                         value="Delete Admin" />
                 </form>

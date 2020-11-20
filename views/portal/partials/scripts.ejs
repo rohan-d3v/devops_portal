@@ -3,4 +3,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="../assets/js/datatables/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/datatables/datatables-search.js"></script>
+<!--Custom CSS-->
 <script src="../assets/js/portal.js"></script>
+<script src="../assets/js/passwordhelper.js"></script>
+<script src="../assets/js/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/datatables/datatables-search.js"></script>
+<script>
+    $("#multiple").select2({
+        allowClear: true
+    });
+</script>
+<script type="text/javascript">
+    $('#timeCheckBtn').change(function (e) {
+        e.preventDefault();
+        var inOutTrack = 'out'
+        if (this.checked) inOutTrack = 'in'
+        $.post("/timeTracker", {
+            timeTrack: new Date().toLocaleTimeString(),
+            inOutTrack: inOutTrack
+        }).complete(function () {
+            console.log("Success");
+        });
+    });
+</script>

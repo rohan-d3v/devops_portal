@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top navHide">
-    <div class="container">
+    <div class="container-fluid">
         <div class="brand">
             <a href="/dashboard"><img src="../assets/img/logo.png" alt="TAX360 Logo" class="img-responsive logo"
                     style="max-height:75px;"></a>
@@ -10,29 +10,13 @@
 
         <!-- Navbar Left-->
         <div class="nav navbar-nav navbar-left">
-            <li><a href="/tracker"><i class="fa fa-clock-o"></i><span>Check in/Out</span></a></li>
+            <%- include('./components/tracker') %>
         </div>
 
         <div id="navbar-menu">
             <ul class="nav navbar-nav navbar-right">
 
-                <!--Super Admin-->
-                <% if (admin) { %>
-                <li><a href="/manageUsers"><i class="fa fa-users"></i><span>Users</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i>
-                        <span>Projects</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/manageProjects"><i class="lnr lnr-briefcase"></i><span>Manage Projects</span></a></li>
-                        <li><a href="#"><i class="lnr lnr-file-add"></i><span>Manage Tasks</span></a></li>
-                    </ul>
-                </li>
-                <% } %>
-                <!--End Super Admin-->
-
-                <li><a href="#"><i class="fa fa-clipboard"></i><span>My Tasks</span></a></li>
-                <li><a href="#"><i class="fa fa-calendar"></i><span>My Calendar</span></a></li>
-
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
                         <span><%- user %></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>

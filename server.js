@@ -39,9 +39,13 @@ pkg.scheduler.scheduleJob('0 0 * * *', function () {
         if(docs){
             for (i = 0; i < docs.length; i++){
                 var date = new Date().toLocaleDateString();
+                var work = true
+                if(new Date().getDay() == 0 || new Date().getDay() == 6)
+                    work = false
                 var dataObj = {
                     employee: docs[i]._id,
                     date: date,
+                    work: work,
                     active: false,
                     time_in: null,
                     time_out: null
@@ -54,6 +58,8 @@ pkg.scheduler.scheduleJob('0 0 * * *', function () {
 });
 
 /*Routes*/
+/**First Time Setup**/
+require('./config/routes/setup')(app)
 /**Middleware Routes**/
 require('./config/routes/middleware/login')(app, pkg.passport);
 

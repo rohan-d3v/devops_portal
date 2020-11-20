@@ -20,38 +20,13 @@
         <!-- End of Topbar -->
 
         <!-- Content Wrapper -->
-        <div class="container">
+        <div class="container-fluid">
             <div class="main">
                 <div class="main-content">
                     <div class="row">
 
                         <!-- Sidebar -->
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><%- title %></h3>
-                                        <div class="right">
-                                            <button type="button" class="btn-toggle-collapse">
-                                                <i class="lnr lnr-chevron-up"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <nav>
-                                            <ul class="nav">
-                                                <li class="nav-item">
-                                                    <a href="#" class="">Link #1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="">Link #2</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%- include('./partials/sidebar') %>
                         <!-- End of Sidebar -->
 
                         <!-- Content -->

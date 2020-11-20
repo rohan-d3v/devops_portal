@@ -3,10 +3,12 @@ module.exports = function (app, passport) {
     app.get('/account', isLoggedIn, (req, res) => {
         var flashMessage=""; if (req.query.message) flashMessage = req.query.message
         req.db.get('users').findOne({ _id: req.user._id }, {}, function (e, docs) {
-            res.render('portal/account', {
-                user: req.user.name, admin: req.user.admin,
-                adminDetails: docs, message: flashMessage, title: 'Account'
-            });
+            req.db.get('timesheets').findOne({employee: req.user._id, date: new Date().toLocaleDateString()}, {}, (e, checkin)=>{
+                res.render('portal/account', {
+                    user: req.user.name, admin: req.user.admin, active: checkin.active,
+                    adminDetails: docs, message: flashMessage, title: 'Account'
+                });
+            })
         })
     });
     app.post('/updateProfile', isLoggedIn, (req, res) => {

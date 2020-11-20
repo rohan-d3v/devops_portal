@@ -1,8 +1,18 @@
 module.exports = (app, passport, scheduler) =>{
-    app.get('/tracker', isLoggedIn, (req,res)=>{
-        var today = new Date().toLocaleDateString()
-        req.db.get('timesheets').findOne({employee: req.user._id, date: today},{},(e, time)=>{
-            res.render('portal/tracker', {title: 'Track your Time', data: time, admin: req.user.admin, user: req.user.name})
+    app.post('/timeTracker',isLoggedIn, (req,res)=>{
+        var dataObj = {
+            active: true,
+            time_in: req.body.timeTrack,
+            time_out: null
+        }
+        if(req.body.inOutTrack == 'out'){
+            dataObj = {
+                active: false,
+                time_out: req.body.timeTrack
+            }
+        }
+        req.db.get('timesheets').findOneAndUpdate({employee: req.user._id, date: new Date().toLocaleDateString},{
+            $set: dataObj
         })
     })
 }

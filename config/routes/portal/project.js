@@ -3,9 +3,11 @@ module.exports = function (app, passport, mongodb) {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('projects').find({}, {}, (e, projectlist) => {
             req.db.get('users').find({}, {}, (e, userlist) => {
-                res.render('portal/super/projects/list', {
-                    user: req.user.name, admin: req.user.admin, userlist: userlist,
-                    projectlist: projectlist, message: message, title: 'Manage Admins'
+                req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                    res.render('portal/super/projects/list', {
+                        user: req.user.name, admin: req.user.admin, userlist: userlist, active: checkin.active,
+                        projectlist: projectlist, message: message, title: 'Manage Projects'
+                    })
                 })
             })
         })
@@ -14,7 +16,7 @@ module.exports = function (app, passport, mongodb) {
         req.db.get('projects').findOne({ name: req.body.project_name }, {}, (e, docs) => {
             if (!docs) {
                 assignments = []
-                if(req.body.assignmentList){
+                if (req.body.assignmentList) {
                     if (Array.isArray(req.body.assignmentList)) {
                         for (j = 0; j < req.body.assignmentList; j++) assignments[j] = new mongodb.ObjectID(req.body.assignmentList[j])
                     } else assignments[0] = new mongodb.ObjectID(req.body.assignmentList)
@@ -27,6 +29,20 @@ module.exports = function (app, passport, mongodb) {
             } else res.redirect('/manageProjects?message=Project Already exists')
         })
     })
+
+    app.get('/manageProject', isLoggedIn, isAdmin, (req, res) => {
+        var message = ""; if (req.query.message) message = req.query.message
+        req.db.get('projects').findOne({_id: req.query.uid}, {}, (e, project) => {
+            req.db.get('users').find({}, {}, (e, userlist) => {
+                req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                    res.render('portal/super/projects/edit', {
+                        user: req.user.name, admin: req.user.admin, userlist: userlist, active: checkin.active,
+                        project: project, message: message, title: 'Manage Project'
+                    })
+                })
+            })
+        })
+    });
 }
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

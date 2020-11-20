@@ -5,9 +5,11 @@ module.exports = function (app, passport) {
     app.get('/manageUsers', isLoggedIn, isAdmin, (req, res) => {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('users').find({}, {}, (e, userlist) => {
-            res.render('portal/super/users/list', {
-                user: req.user.name, admin: req.user.admin,
-                userlist: userlist, message: message, title: 'Manage Admins'
+            req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                res.render('portal/super/users/list', {
+                    user: req.user.name, admin: req.user.admin, active: checkin.active,
+                    userlist: userlist, message: message, title: 'Manage Admins'
+                })
             })
         })
     });
@@ -29,10 +31,12 @@ module.exports = function (app, passport) {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('users').findOne({ _id: req.query.uid }, {}, function (e, docs) {
             req.db.get('taxFiling').find({}, {}, (e, assignmentList) => {
-                res.render('portal/super/users/edit', {
-                    user: req.user.name, admin: req.user.admin, title: 'Edit User',
-                    person: docs, message: message
-                });
+                req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                    res.render('portal/super/users/edit', {
+                        user: req.user.name, admin: req.user.admin, title: 'Edit User', active: checkin.active,
+                        person: docs, message: message
+                    });
+                })
             })
         })
     });
