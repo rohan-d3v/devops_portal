@@ -49,8 +49,8 @@ npm start
 
 ### Setup the project
 
-visit `localhost:2020/setupAdmin` to setup Admin
-visit `localhost:2020/setupUser` to setup User
+- visit `localhost:2020/setupAdmin` to setup Admin
+- visit `localhost:2020/setupUser` to setup User
 
 ---
 
