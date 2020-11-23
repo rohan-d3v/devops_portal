@@ -118,7 +118,7 @@
                                                                 <h4>Is Admin?</h4>
                                                             </th>
                                                             <td>
-                                                                <% var opt1 = 'selected', opt2 = ''; if(person.admin) opt1 = ''; opt2='selected' %>
+                                                                <% var opt1 = 'selected', opt2 = ''; if(person.admin){ opt1 = ''; opt2='selected'} %>
                                                                 <select class="form-control " name="superAdmin">
                                                                     <option <%- opt1 %> value="false">No</option>
                                                                     <option <%- opt2 %> value="true">Yes</option>
@@ -141,8 +141,8 @@
                                                             </th>
                                                             <td>
                                                                 <% var opt1 = 'selected', opt2 = '', opt3 = ''; 
-                                                                if(person.gender == "female") opt1 = ''; opt2='selected' 
-                                                                if(person.gender == "N/A") opt1 = ''; opt2=''; opt3 = 'selected' 
+                                                                if(person.gender == "female"){ opt1 = ''; opt2='selected' }
+                                                                if(person.gender == "N/A"){ opt1 = ''; opt2=''; opt3 = 'selected' }
                                                                 %>
                                                                 <select class="form-control " name="gender">
                                                                     <option <%- opt1 %> value="male">Male</option>
