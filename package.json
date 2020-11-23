@@ -4,7 +4,7 @@
   "description": "devOps portal implementation for Sundar Infographic Analytics",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "start": "npm i -g nodemon && nodemon server.js"
   },
   "repository": {
     "type": "git",
