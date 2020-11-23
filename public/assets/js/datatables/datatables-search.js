@@ -1,12 +1,11 @@
-$(document).ready(function () {
-  $('#dataTable').DataTable()
-
+$(function () {
+  $('#dataTable').dataTable()
   $('#reportsTable tfoot th').each(function () {
     var title = $(this).text();
     $(this).html('<input type="text" placeholder="Search ' + title + '" />');
   });
-
-  $('#reportsTable').DataTable({
+  $('#reportsTable').dataTable({
+    destroy: true,
     dom: 'lBfrtip',
     buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
     initComplete: function () {
@@ -23,4 +22,5 @@ $(document).ready(function () {
       });
     }
   });
-});
+  
+})

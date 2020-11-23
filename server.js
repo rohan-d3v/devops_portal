@@ -70,6 +70,7 @@ require('./config/routes/portal/tracker')(app, pkg.passport);
 require('./config/routes/portal/tasks_admin')(app, pkg.passport, pkg.mongodb);
 require('./config/routes/portal/tasks_user')(app, pkg.passport, pkg.mongodb);
 require('./config/routes/portal/calendar_user')(app, pkg.passport, pkg.mongodb);
+require('./config/routes/portal/calendar_admin')(app, pkg.passport, pkg.mongodb);
 
 /***Admin Routes***/
 require('./config/routes/portal/admin')(app, pkg.passport);
