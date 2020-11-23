@@ -3,7 +3,9 @@ module.exports = function (app, passport) {
     app.get('/dashboard', isLoggedIn, function (req, res) {
         var message = ""; if (req.query.message) message = req.query.smessage
         req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
-            res.render('portal/dashboard', { message: message, user: req.user, title: 'Dashboard', active: checkin.active });
+            req.db.get('tasks').find({person: req.user._id}, {}, (e, tasklist)=>{
+                res.render('portal/dashboard', { message: message, user: req.user, title: 'Dashboard', active: checkin.active, tasklist: tasklist });
+            })
         })
     });
 

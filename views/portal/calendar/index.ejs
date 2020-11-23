@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <%- include('../partials/navbar') %>
+        <!-- END NAVBAR -->
+
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar') %>
+        <!-- End of Sidebar -->
+        <div class="container-fluid">
+            <div class="main">
+                <div class="main-content">
+                    <div class="row">
+                        <!-- Sidebar -->
+                        <div id="leftSpacer"></div>
+                        <!-- End of Sidebar -->
+
+                        <div class="col-md-12" id="left">
+                            <% if (message.length > 0) { %>
+                            <div class="alert alert-info text-center"><%- message %></div>
+                            <% } %>
+                            <div class="panel">
+                                <div class="panel-heading text-center">
+                                    <h3>Your Calendar</h3>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a data-toggle="tab" role="tab" href="#calendar"
+                                            class="btn btn-lg btn-info">Your Calendar</a>
+                                        <a data-toggle="tab" role="tab" href="#applyLeave"
+                                            class="btn btn-lg btn-info">Day(s) Off Request</a>
+                                        <a data-toggle="tab" role="tab" href="#applyPermission"
+                                            class="btn btn-lg btn-info">Time Off Request</a>
+                                    </div>
+                                    <div class="right">
+                                        <button type="button" class="btn-toggle-collapse">
+                                            <i class="lnr lnr-chevron-up"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="tab-content text-center">
+                                    <div class="tab-pane active" id="calendar" role="tabpanel">
+                                        <%- include('components/list') %>
+                                    </div>
+                                    <div class="tab-pane" id="applyLeave" role="tabpanel">
+                                    </div>
+                                    <div class="tab-pane" id="applyPermission" role="tabpanel">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
+        </div>
+        <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <%- include('../partials/footer') %>
+    </div>
+    <!-- END WRAPPER -->
+    <%- include('../partials/scripts') %>
+
+</body>
+
+</html>

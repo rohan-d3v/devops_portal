@@ -1,0 +1,44 @@
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>In-time</th>
+                    <th>Out-time</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Date</th>
+                    <th>In-time</th>
+                    <th>Out-time</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <%
+                var list = '';
+                for (i = 0; i < timesheets.length; i++){
+                    var dateVar = Date.parse(timesheets[i].date+' '+timesheets[i].time_in)
+                    var checkVar = Date.parse(timesheets[i].date+' 9:30:00')
+                    var checkLate = ''; if(dateVar > checkVar) checkLate = 'Late'
+                    var workday = 'Weekday'; 
+                    if(new Date(timesheets[i].date).getDay() == 0 || new Date(timesheets[i].date).getDay() == 6) workday = 'Weekend'                   
+                    list += '<tr>'
+                        list += '<td>'+timesheets[i].date+'</td>'
+                        list += '<td>'+timesheets[i].time_in+'</td>'
+                        list += '<td>'+timesheets[i].time_out+'</td>'
+                        list += '<td>'+workday+'</td>'
+                        list += '<td>'+checkLate+'</td>'
+                    list += '</tr>'
+                }
+                %>
+                <%- list %>
+            </tbody>
+        </table>
+    </div>
+</div>
