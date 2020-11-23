@@ -12,6 +12,10 @@ module.exports = function (app, passport, mongodb) {
             })
         })
     });
+
+    app.post('/createTask', (req, res)=>{
+        
+    })
 }
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

@@ -30,14 +30,41 @@
     });
 </script>
 <script>
-    $('#sidebarToggle').click(function(){
-        if ($('#leftSpacer').hasClass('col-md-2')){
-            $('#leftSpacer').removeClass('col-md-2')
-            $('#left').removeClass('col-md-6').addClass('col-md-8')
-        } 
+    $(function () {
+        if ($(document).width() >= 1048) {
+            fullWindowSpacer();
+            $('#sidebarToggle').on('click', function () { fullWindowSpacer(); });
+        }
         else {
-            $('#leftSpacer').addClass('col-md-2')
-            $('#left').removeClass('col-md-8').addClass('col-md-6')
+            smallWindowSpacer()
+            $('#sidebarToggle').on('click', function () { smallWindowSpacer() });
         }
     })
+
+    function fullWindowSpacer() {
+        if (!$('#sideBtn').hasClass('is_active')) {
+            if ($('#left').hasClass('col-md-12')) {
+                $('#left').removeClass('col-md-12').addClass('col-md-10')
+                $('#leftSpacer').addClass('col-md-2')
+            }
+        }
+        else {
+            if ($('#left').hasClass('col-md-10')) {
+                $('#left').removeClass('col-md-10').addClass('col-md-12')
+                $('#leftSpacer').removeClass('col-md-2')
+            }
+        }
+    }
+    function smallWindowSpacer() {
+        if ($('#sideBtn').hasClass('is_active')) {
+            if ($('#left').hasClass('col-md-12')) {
+                $('#left').removeClass('col-md-12').addClass('col-md-10')
+            }
+        }
+        else {
+            if ($('#left').hasClass('col-md-10')) {
+                $('#left').removeClass('col-md-10').addClass('col-md-12')
+            }
+        }
+    }
 </script>

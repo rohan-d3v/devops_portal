@@ -1,45 +1,41 @@
-<div class="card">
-    <div class="panel">
-
-        <div class="panel-heading">
-            <h3 class="text-center">Current Task List</h3>
-            <div class="right">
-                <button type="button" class="btn-toggle-collapse">
-                    <i class="lnr lnr-chevron-up"></i>
-                </button>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Project</th>
-                            <th>Progress</th>
-                            <th>Type</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Task</th>
-                            <th>Project</th>
-                            <th>Progress</th>
-                            <th>Type</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <%
+<div class="panel-heading">
+    <h3 class="text-center">Current Task List</h3>
+    <a data-toggle="tab" role="tab" href="#createTask" class="btn btn-lg text-center btn-secondary">Create Task</a>
+    <div class="right">
+        <button type="button" class="btn-toggle-collapse">
+            <i class="lnr lnr-chevron-up"></i>
+        </button>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Project</th>
+                    <th>Progress</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Task</th>
+                    <th>Project</th>
+                    <th>Progress</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <%
                         var list = '';
                         
                         %>
-                        <%- list %>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+                <%- list %>
+            </tbody>
+        </table>
     </div>
+
 </div>

@@ -1,16 +1,96 @@
-<div class="card">
-    <div class="panel">
-        <div class="panel-heading text-center">
-            <h3>Create new Task</h3>
-            <div class="alert alert-danger" id="passMatch" style="display:none">
-                Passwords Don't match</div>
-            
+<div class="panel-heading text-center">
+    <h3>Create new Task</h3>
+    <a data-toggle="tab" role="tab" href="#taskList" class="btn btn-lg text-center btn-secondary">Task List</a>
+    <div class="alert alert-danger" id="passMatch" style="display:none">
+        Passwords Don't match</div>
+
+</div>
+<div class="panel-body">
+    <form action="" method="post">
+        <div class="col-md-6">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        <h4>Task Name</h4>
+                    </th>
+                    <td><input type="text" class="form-control " required name="task_name"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>Start Date</h4>
+                    </th>
+                    <td><input type="date" class="form-control " required name="start_date"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>Projected Hours</h4>
+                    </th>
+                    <td><input type="number" class="form-control " required name="projected_hours"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>Task Type</h4>
+                    </th>
+                    <td>
+                        <select class="form-control" name="taskType">
+                            <option value="Feature">Feature</option>
+                            <option value="Bug">Bug</option>
+                            <option value="Feature Update/Patch">Feature Update/Patch</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div class="panel-body">
-            <form action="/createTask" method="post">
-               
-                <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Task" />
-            </form>
+        <div class="col-md-6">
+            <table class="table table-hover">
+
+                <tr>
+                    <th>
+                        <h4>Description</h4>
+                    </th>
+                    <td><input type="text" class="form-control " required name="project_desc"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>End Date</h4>
+                    </th>
+                    <td><input type="date" class="form-control " required name="end_date"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>Assign People</h4>
+                    </th>
+                    <td>
+                        <select class="form-control " name="assignmentList" style="width:100%">
+                            <% 
+                                    var list=''
+                                    for (var i=0; i < userlist.length; i++){
+                                        list += '<option value='+userlist[i]._id+'>'+userlist[i].name+'</option>'
+                                    }
+                                    %>
+                            <%- list %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <h4>Project Name</h4>
+                    </th>
+                    <td>
+                        <select class="form-control" name="projectName">
+                            <% 
+                                    var list=''
+                                    for (var i=0; i < projectlist.length; i++){
+                                        list += '<option value='+projectlist[i]._id+'>'+projectlist[i].name+'</option>'
+                                    }
+                                    %>
+                            <%- list %>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-    </div>
+
+        <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Project" />
+    </form>
 </div>

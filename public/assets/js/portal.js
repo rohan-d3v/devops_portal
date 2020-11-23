@@ -13,7 +13,7 @@ $(document).ready(function() {
 			$('body').removeClass('layout-default'); // also remove default behaviour if set
 		}
 
-		$(this).find('.lnr').toggleClass('lnr-menu lnr-menu');
+		$(this).find('.lnr').toggleClass('lnr-menu lnr-menu is_active');
 
 		if($(window).innerWidth() < 1025) {
 			if(!$('body').hasClass('offcanvas-active')) {

@@ -4,7 +4,17 @@
             <ul class="nav">
                 <!--Super Admin-->
                 <% if (user.admin) { %>
-                <li><a href="/manageUsers"><i class="fa fa-users"></i><span>Users</span></a></li>
+                <li>
+                <li>
+                    <a href="#userPages" data-toggle="collapse" class="collapsed"><i class="fa fa-users"></i>
+                        <span>Users</span></a>
+                    <div id="userPages" class="collapse ">
+                        <ul class="nav">
+                            <li><a href="/manageUsers"><i class="lnr lnr-users"></i><span>Manage Users</span></a></li></li>
+                            <li><a href="#manageCalendar"><i class="lnr lnr-calendar-full"></i><span>Manage Calendar</span></a></li>
+                        </ul>
+                    </div>
+                </li>
                 <li>
                     <a href="#projectPages" data-toggle="collapse" class="collapsed"><i class="fa fa-briefcase"></i>
                         <span>Projects</span></a>

@@ -20,18 +20,23 @@
                 <div class="main-content">
                     <div class="row">
                         <!-- Sidebar -->
-                        <div id="leftSpacer" class="col-md-2"></div>
+                        <div id="leftSpacer"></div>
                         <!-- End of Sidebar -->
 
-                        <div class="col-md-6" id="left">
+                        <div class="col-md-12" id="left">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
-                            <%- include('components/list') %>
-                        </div>
-
-                        <div class="col-md-4">
-                            <%- include('components/create') %>
+                            <div class="panel">
+                                <div class="tab-content text-center">
+                                    <div class="tab-pane active" id="taskList" role="tabpanel">
+                                        <%- include('components/list') %>
+                                    </div>
+                                    <div class="tab-pane" id="createTask" role="tabpanel">
+                                        <%- include('components/create') %>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -46,7 +51,7 @@
     </div>
     <!-- END WRAPPER -->
     <%- include('../../partials/scripts') %>
-    
+
 </body>
 
 </html>

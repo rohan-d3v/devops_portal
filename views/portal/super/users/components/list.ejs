@@ -1,35 +1,33 @@
-<div class="card">
-    <div class="panel">
-
-        <div class="panel-heading">
-            <h3 class="text-center">Current Employee List</h3>
-            <div class="right">
-                <button type="button" class="btn-toggle-collapse">
-                    <i class="lnr lnr-chevron-up"></i>
-                </button>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Is Admin?</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Is Admin?</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <%
+<div class="panel-heading">
+    <h3 class="text-center">Current Employee List</h3>
+    <a data-toggle="tab" role="tab" href="#createEmployee" class="btn btn-lg text-center btn-secondary">Create Employee</a>
+    <div class="right">
+        <button type="button" class="btn-toggle-collapse">
+            <i class="lnr lnr-chevron-up"></i>
+        </button>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Is Admin?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Is Admin?</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <%
                         var list = '';
                         for (i = 0; i < userlist.length; i++) {
                         var superAdmin = 'No'; if(userlist[i].admin) superAdmin = 'Yes';
@@ -41,11 +39,9 @@
                         list += '</tr>';
                         }
                         %>
-                        <%- list %>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+                <%- list %>
+            </tbody>
+        </table>
     </div>
+
 </div>

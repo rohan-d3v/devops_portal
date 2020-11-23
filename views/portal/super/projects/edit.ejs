@@ -19,8 +19,8 @@
             <div class="main">
                 <div class="main-content">
                     <div class="row">
-                        <div class="col-md-2" id="leftSpacer"></div>
-                        <div class="col-md-8">
+                        <div id="leftSpacer"></div>
+                        <div class="col-md-12" id="left">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
@@ -37,68 +37,32 @@
                                 <div class="panel-body" style="margin-top:15%">
                                     <form action="/updateProject" method="post">
                                         <input type="hidden" name="uid" value=<%- project._id %>>
-                                            <div class="col-md-6">
-                                                <table class="table table-hover">
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Name</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control input-lg" required
-                                                                name="name" value=<%- '"'+project.name+'"' %>>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Start Date</h4>
-                                                        </th>
-                                                        <td><input type="date" class="form-control input-lg" required
-                                                                name="start_date"
-                                                                value="<%- project.start_date %>"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Projected Hours</h4>
-                                                        </th>
-                                                        <td><input type="numbers" class="form-control input-lg" required
-                                                                name="total_hours" value="<%- project.projected_hours %>"></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <table class="table table-hover">
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Status</h4>
-                                                        </th>
-                                                        <td>
-                                                            <select class="form-control input-lg" name="progress">
-                                                                <% var list = '', options = ['Yet to Start', 'In Progress', 'QA & Review', 'Completed']
-                                                                for (i = 0; i < options.length; i++){
-                                                                    var select = ''; if(project.progress == options[i]) select = 'selected'
-                                                                    list += '<option '+select+' value="'+options[i]+'">'+options[i]+'</option>'
-                                                                }
-                                                                %>
-                                                                <%- list %>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>End Date</h4>
-                                                        </th>
-                                                        <td><input type="date" class="form-control input-lg" required value="<%- project.end_date %>"
-                                                                name="end_date"></td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Assign People</h4>
-                                                        </th>
-                                                        <td>
-                                                            <select id="multiple" class="form-control input-lg"
-                                                                name="assignmentList" multiple>
-                                                                <% 
+                                        <div class="col-md-6">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <th>
+                                                        <h4>Name</h4>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control " required name="name"
+                                                            value=<%- '"'+project.name+'"' %>>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <h4>Start Date</h4>
+                                                    </th>
+                                                    <td><input type="date" class="form-control " required
+                                                            name="start_date" value="<%- project.start_date %>"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <h4>Assign People</h4>
+                                                    </th>
+                                                    <td>
+                                                        <select id="multiple" class="form-control "
+                                                            name="assignmentList" multiple>
+                                                            <% 
                                                                     var list=''
                                                                     for (var i=0; i < userlist.length; i++){
                                                                         var selected = ''
@@ -107,14 +71,51 @@
                                                                         list += '<option '+selected+' value='+userlist[i]._id+'>'+userlist[i].name+'</option>'
                                                                     }
                                                                     %>
-                                                                <%- list %>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            
-                                            
+                                                            <%- list %>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <th>
+                                                        <h4>Description</h4>
+                                                    </th>
+                                                    <td><input type="text" class="form-control" name="project_desc"
+                                                            value="<%- project.description %>" required></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <h4>End Date</h4>
+                                                    </th>
+                                                    <td><input type="date" class="form-control " required
+                                                            value="<%- project.end_date %>" name="end_date"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <h4>Status</h4>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control " name="progress">
+                                                            <% var list = '', options = ['Yet to Start', 'In Progress', 'QA & Review', 'Completed']
+                                                                for (i = 0; i < options.length; i++){
+                                                                    var select = ''; if(project.progress == options[i]) select = 'selected'
+                                                                    list += '<option '+select+' value="'+options[i]+'">'+options[i]+'</option>'
+                                                                }
+                                                                %>
+                                                            <%- list %>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+
+
+                                            </table>
+                                        </div>
+
+
                                         <input type="submit" class="btn btn-lg btn-block btn-primary"
                                             value="Update Project" />
                                     </form>

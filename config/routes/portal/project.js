@@ -23,11 +23,11 @@ module.exports = function (app, passport, mongodb) {
                 }
                 req.db.get('projects').insert({
                     name: req.body.project_name, 
+                    description: req.body.project_desc,
                     progress: 'Yet to Start', 
                     users: assignments, 
                     start_date: req.body.start_date, 
                     end_date: req.body.end_date, 
-                    projected_hours: req.body.total_hours,
                     completed_date: null,
                     total_hours: null
                 }, (e, docs) => {
@@ -52,15 +52,11 @@ module.exports = function (app, passport, mongodb) {
     });
 
     app.post('/updateProject', isLoggedIn, isAdmin, (req, res) => {
-        var complete = tHours = null
+        var complete = tHours = null, assignments = []
         if(req.body.progress == "Completed"){ 
-            complete = new Date().toLocaleDateString()
-            var diffDays = (new Date(start_date).getTime() - new Date(complete).getTime())/(1000*3600*24)
-            var tHours = diffDays * 8
+            var tHours = ((new Date(start_date).getTime() - new Date(new Date().toLocaleDateString()).getTime())/(1000*3600*24))* 8
         }
-        assignments = []
         if (Array.isArray(req.body.assignmentList)) {
-            console.log(req.body.assignmentList)
             for (j = 0; j < req.body.assignmentList.length; j++) assignments[j] = new mongodb.ObjectID(req.body.assignmentList[j])
         } else assignments[0] = new mongodb.ObjectID(req.body.assignmentList)
         req.db.get('projects').findOneAndUpdate({ _id: req.body.uid }, {
@@ -68,7 +64,7 @@ module.exports = function (app, passport, mongodb) {
                 start_date: req.body.start_date,
                 end_date: req.body.end_date,
                 progress: req.body.progress,
-                projected_hours: req.body.total_hours,
+                description: req.body.project_desc,
                 name: req.body.name,
                 users: assignments,
                 completed_date: complete,

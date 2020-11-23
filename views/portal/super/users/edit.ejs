@@ -19,8 +19,8 @@
             <div class="main">
                 <div class="main-content">
                     <div class="row">
-                        <div class="col-md-2" id="leftSpacer"></div>
-                        <div class="col-md-4">
+                        <div id="leftSpacer"></div>
+                        <div class="col-md-12" id="left">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
@@ -33,53 +33,120 @@
                                         <h4 class="display-6 text-center"><%- person._id %></h4>
                                         <a href="/manageUsers" class=" btn btn-lg btn-secondary text-center">Go
                                             back</a>
+                                        <br>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a data-toggle="tab" role="tab" href="#updateInfo"
+                                                class="btn btn-lg btn-info">Update User Information</a>
+                                            <a data-toggle="tab" role="tab" href="#updatePass"
+                                                class="btn btn-lg btn-info">Update User Password</a>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="panel-body" style="margin-top:25%">
+                                <div class="panel-body" style="margin-top:15%">
                                     <div class="tab-content text-center">
                                         <div class="tab-pane active" id="updateInfo" role="tabpanel">
                                             <form action="/updateUser" method="post">
-                                                <table class="table table-hover">
-                                                    <input type="hidden" name="uid" value=<%- person._id %>>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Name</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control input-lg" required
-                                                                name="name" value=<%- '"'+person.name+'"' %>>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Email</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control input-lg" required
-                                                                name="email" value=<%- '"'+person.email+'"' %>>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Is Super Admin?</h4>
-                                                        </th>
-                                                        <td>
-                                                            <% var optA = 'selected', optB = ''
-                                                            if(person.superAdmin){ optA = '', optB = 'selected'}
-                                                            %>
-                                                            <select class="form-control input-lg" name="superAdmin">
-                                                                <option <%- optA %> value="false">No</option>
-                                                                <option <%- optB %> value="true">Yes</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                <div class="col-md-6">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Name</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required name="name" value="<%- person.name %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Email</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required name="email" value="<%- person.email %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Designation</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required name="designation" value="<%- person.designation %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Date of Joining</h4>
+                                                            </th>
+                                                            <td>
+                                                                <input type="date" required name="doj" class="form-control" value="<%- person.doj %>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Address</h4>
+                                                            </th>
+                                                            <td>
+                                                                <input type="text" required name="address" class="form-control" value="<%- person.address %>">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Member ID</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required name="member_id" value="<%- person.member_id %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Mobile</h4>
+                                                            </th>
+                                                            <td>
+                                                                <input type="text" name="mobile" required class="form-control" pattern="^[6789]\d{9}$"
+                                                                    title="invalid phone number" value="<%- person.mobile %>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Is Admin?</h4>
+                                                            </th>
+                                                            <td>
+                                                                <% var opt1 = 'selected', opt2 = ''; if(person.admin) opt1 = ''; opt2='selected' %>
+                                                                <select class="form-control " name="superAdmin">
+                                                                    <option <%- opt1 %> value="false">No</option>
+                                                                    <option <%- opt2 %> value="true">Yes</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                       
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Date of Birth</h4>
+                                                            </th>
+                                                            <td>
+                                                                <input type="date" required name="dob" class="form-control" value="<%- person.dob %>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Gender</h4>
+                                                            </th>
+                                                            <td>
+                                                                <% var opt1 = 'selected', opt2 = '', opt3 = ''; 
+                                                                if(person.gender == "female") opt1 = ''; opt2='selected' 
+                                                                if(person.gender == "N/A") opt1 = ''; opt2=''; opt3 = 'selected' 
+                                                                %>
+                                                                <select class="form-control " name="gender">
+                                                                    <option <%- opt1 %> value="male">Male</option>
+                                                                    <option <%- opt2 %> value="female">Female</option>
+                                                                    <option <%- opt3 %> value="N/A">Custom/Prefer not to discuss</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                               
                                                 <input type="submit" class="btn btn-lg btn-block btn-primary"
                                                     value="Update User" />
                                             </form>
                                             <hr>
-                                            <a data-toggle="tab" role="tab" href="#updatePass"
-                                                class="btn btn-lg btn-block btn-info">Update User Password</a>
+
                                         </div>
                                         <div class="tab-pane" id="updatePass" role="tabpanel">
                                             <form action="/updateUserPass" method="post">
@@ -112,8 +179,7 @@
                                                     class="btn btn-lg btn-block btn-primary" value="Update User" />
                                             </form>
                                             <hr>
-                                            <a data-toggle="tab" role="tab" href="#updateInfo"
-                                                class="btn btn-lg btn-block btn-info">Update User Information</a>
+
                                         </div>
                                         <hr>
                                         <a href="#deleteUserModal" data-toggle="modal"

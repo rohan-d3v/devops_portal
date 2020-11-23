@@ -19,7 +19,7 @@
             <div class="main">
                 <div class="main-content">
                     <div class="row">
-                        <div class="col-md-2" id="leftSpacer"></div>
+                        <div id="leftSpacer"></div>
                         <div class="col-md-4">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
@@ -46,7 +46,7 @@
                                                             <h4>Name</h4>
                                                         </th>
                                                         <td>
-                                                            <input type="text" class="form-control input-lg" required
+                                                            <input type="text" class="form-control " required
                                                                 name="name" value=<%- '"'+person.name+'"' %>>
                                                         </td>
                                                     </tr>
@@ -55,7 +55,7 @@
                                                             <h4>Email</h4>
                                                         </th>
                                                         <td>
-                                                            <input type="text" class="form-control input-lg" required
+                                                            <input type="text" class="form-control " required
                                                                 name="email" value=<%- '"'+person.email+'"' %>>
                                                         </td>
                                                     </tr>
@@ -67,7 +67,7 @@
                                                             <% var optA = 'selected', optB = ''
                                                             if(person.superAdmin){ optA = '', optB = 'selected'}
                                                             %>
-                                                            <select class="form-control input-lg" name="superAdmin">
+                                                            <select class="form-control " name="superAdmin">
                                                                 <option <%- optA %> value="false">No</option>
                                                                 <option <%- optB %> value="true">Yes</option>
                                                             </select>
