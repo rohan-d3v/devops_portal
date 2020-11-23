@@ -20,108 +20,159 @@
                 <div class="main-content">
                     <div class="row">
                         <div id="leftSpacer"></div>
-                        <div class="col-md-4">
+                        <div class="col-md-12" id="left">
                             <% if (message.length > 0) { %>
                             <div class="alert alert-info text-center"><%- message %></div>
                             <% } %>
-                            <div class="alert alert-danger" id="passMatch" style="display:none">
-                                Passwords Don't match</div>
                             <div class="panel">
                                 <div class="panel-heading">
                                     <div class="col-md-12 text-center">
-                                        <h3 class="display-6 text-center"><%- person.name %></h3>
-                                        <h4 class="display-6 text-center"><%- person._id %></h4>
-                                        <a href="/manageUsers" class=" btn btn-lg btn-secondary text-center">Go
+                                        <h3 class="display-6 text-center"><%- tasklist.name %></h3>
+                                        <h4 class="display-6 text-center"><%- tasklist._id %></h4>
+                                        <a href="/manageTasks" class=" btn btn-lg btn-secondary text-center">Go
                                             back</a>
+                                        <br>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a data-toggle="tab" role="tab" href="#updateTask"
+                                                class="btn btn-lg btn-info">Update Task Information</a>
+                                            <a data-toggle="tab" role="tab" href="#updateStatus"
+                                                class="btn btn-lg btn-info">Update Task Status</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="panel-body" style="margin-top:25%">
+                                <div class="panel-body" style="margin-top:15%">
                                     <div class="tab-content text-center">
-                                        <div class="tab-pane active" id="updateInfo" role="tabpanel">
-                                            <form action="/updateUser" method="post">
-                                                <table class="table table-hover">
-                                                    <input type="hidden" name="uid" value=<%- person._id %>>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Name</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control " required
-                                                                name="name" value=<%- '"'+person.name+'"' %>>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Email</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control " required
-                                                                name="email" value=<%- '"'+person.email+'"' %>>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Is Super Admin?</h4>
-                                                        </th>
-                                                        <td>
-                                                            <% var optA = 'selected', optB = ''
-                                                            if(person.superAdmin){ optA = '', optB = 'selected'}
+                                        <div class="tab-pane active" id="updateTask" role="tabpanel">
+                                            <form action="/updateTask" method="post">
+                                                <input type="hidden" value=<%- tasklist._id %> name="uid">
+                                                <div class="col-md-6">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Task Name</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="task_name" value="<%- tasklist.name %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Projected Hours</h4>
+                                                            </th>
+                                                            <td><input type="number" class="form-control " required
+                                                                    name="projected_hours"
+                                                                    value="<%- tasklist.projected_hours %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Task Type</h4>
+                                                            </th>
+                                                            <td>
+                                                                <select class="form-control" name="taskType">
+                                                                    <%
+                                                            var opt2 = opt3 = '', opt1 = 'selected'
+                                                            if(tasklist.type == "Bug"){ opt1 = ''; opt2 = 'selected'}
+                                                            if(tasklist.type == "Feature Update/Patch"){ opt1 = ''; opt3 = 'selected'}
                                                             %>
-                                                            <select class="form-control " name="superAdmin">
-                                                                <option <%- optA %> value="false">No</option>
-                                                                <option <%- optB %> value="true">Yes</option>
+                                                                    <option <%- opt1 %> value="Feature">Feature</option>
+                                                                    <option <%- opt2 %> value="Bug">Bug</option>
+                                                                    <option <%- opt3 %> value="Feature Update/Patch">
+                                                                        Feature
+                                                                        Update/Patch
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Description</h4>
+                                                            </th>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="task_desc"
+                                                                    value="<%- tasklist.description %>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>End Date</h4>
+                                                            </th>
+                                                            <td><input type="date" class="form-control " required
+                                                                    name="end_date" value="<%- tasklist.end_date %>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Assign People</h4>
+                                                            </th>
+                                                            <td>
+                                                                <select class="form-control " name="assignmentList"
+                                                                    style="width:100%">
+                                                                    <% 
+                                                                    var list=''
+                                                                    for (var i=0; i < userlist.length; i++){
+                                                                        list += '<option value='+userlist[i]._id+'>'+userlist[i].name+'</option>'
+                                                                    }
+                                                                    %>
+                                                                    <%- list %>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4>Project Name</h4>
+                                                            </th>
+                                                            <td>
+                                                                <select class="form-control" name="projectName">
+                                                                    <% 
+                                                                    var list=''
+                                                                    for (var i=0; i < projectlist.length; i++){
+                                                                        var select = ''; if(tasklist.project.toString() == projectlist[i]._id.toString()) select = 'selected'
+                                                                        list += '<option '+select+' value='+projectlist[i]._id+'>'+projectlist[i].name+'</option>'
+                                                                    }
+                                                                    %>
+                                                                    <%- list %>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                                <input type="submit" id="passBtn"
+                                                    class="btn btn-lg btn-block btn-primary" value="Update Task" />
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane" id="updateStatus" role="tabpanel">
+                                            <form action="/updateTaskStatus" method="post">
+                                                <input type="hidden" value=<%- tasklist._id %> name="uid">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Task Status</h4>
+                                                        </th>
+                                                        <td>
+                                                            <select class="form-control" name="taskStatus">
+                                                                <% var list = '', options = ['Yet to Start', 'In Progress', 'QA & Review', 'Completed']
+                                                            for (i = 0; i < options.length; i++){
+                                                                var select = ''; if(tasklist.status == options[i]) select = 'selected'
+                                                                list += '<option '+select+' value="'+options[i]+'">'+options[i]+'</option>'
+                                                            }
+                                                            %>
+                                                                <%- list %>
                                                             </select>
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <input type="submit" class="btn btn-lg btn-block btn-primary"
-                                                    value="Update Admin" />
-                                            </form>
-                                            <hr>
-                                            <a data-toggle="tab" role="tab" href="#updatePass"
-                                                class="btn btn-lg btn-block btn-info">Update Admin Password</a>
-                                        </div>
-                                        <div class="tab-pane" id="updatePass" role="tabpanel">
-                                            <form action="/updateUserPass" method="post">
-                                                <input type="hidden" name="uid" value=<%- person._id %>>
-                                                <table class="table table-hover">
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Password</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="password" class="form-control"
-                                                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
-                                                                title="Password needs to have 8 characters, 1 special, uppercase, lowercase character each and a number"
-                                                                name="password" id="pass" placeholder="***********"
-                                                                onkeyup="passCheck()">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Confirm Password</h4>
-                                                        </th>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Confirm Password" id="confirm_pass"
-                                                                required onkeyup="passCheck()">
-                                                        </td>
-                                                    </tr>
-                                                </table>
                                                 <input type="submit" id="passBtn"
-                                                    class="btn btn-lg btn-block btn-primary" value="Update Admin" />
+                                                    class="btn btn-lg btn-block btn-primary"
+                                                    value="Update Task Status" />
                                             </form>
-                                            <hr>
-                                            <a data-toggle="tab" role="tab" href="#updateInfo"
-                                                class="btn btn-lg btn-block btn-info">Update Admin Information</a>
                                         </div>
-                                        <hr>
-                                        <a href="#deleteUserModal" data-toggle="modal"
-                                            class="btn btn-danger btn-lg btn-block">Delete Admin</a>
-
-
                                     </div>
-
+                                    <a href="#deleteTaskModal" data-toggle="modal"
+                                        class="btn btn-danger btn-lg btn-block">Delete Task</a>
                                 </div>
                             </div>
                         </div>

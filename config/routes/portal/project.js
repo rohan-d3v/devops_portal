@@ -22,12 +22,12 @@ module.exports = function (app, passport, mongodb) {
                     } else assignments[0] = new mongodb.ObjectID(req.body.assignmentList)
                 }
                 req.db.get('projects').insert({
-                    name: req.body.project_name, 
+                    name: req.body.project_name,
                     description: req.body.project_desc,
-                    progress: 'Yet to Start', 
-                    users: assignments, 
-                    start_date: req.body.start_date, 
-                    end_date: req.body.end_date, 
+                    progress: 'Yet to Start',
+                    users: assignments,
+                    start_date: req.body.start_date,
+                    end_date: req.body.end_date,
                     completed_date: null,
                     total_hours: null
                 }, (e, docs) => {
@@ -52,10 +52,8 @@ module.exports = function (app, passport, mongodb) {
     });
 
     app.post('/updateProject', isLoggedIn, isAdmin, (req, res) => {
-        var complete = tHours = null, assignments = []
-        if(req.body.progress == "Completed"){ 
-            var tHours = ((new Date(start_date).getTime() - new Date(new Date().toLocaleDateString()).getTime())/(1000*3600*24))* 8
-        }
+        var assignments = []
+
         if (Array.isArray(req.body.assignmentList)) {
             for (j = 0; j < req.body.assignmentList.length; j++) assignments[j] = new mongodb.ObjectID(req.body.assignmentList[j])
         } else assignments[0] = new mongodb.ObjectID(req.body.assignmentList)
@@ -63,15 +61,28 @@ module.exports = function (app, passport, mongodb) {
             $set: {
                 start_date: req.body.start_date,
                 end_date: req.body.end_date,
-                progress: req.body.progress,
                 description: req.body.project_desc,
                 name: req.body.name,
                 users: assignments,
-                completed_date: complete,
-                total_hours: tHours
             }
         }, (e, docs) => {
             res.redirect('/manageProject?message=Project Updated Successfully&uid=' + req.body.uid)
+        })
+    })
+    app.post('/updateProjectStatus', (req, res) => {
+        var complete = tHours = null;
+        if (req.body.progress == "Completed") {
+            complete = new Date().toLocaleDateString()
+            tHours = ((new Date(new Date().toLocaleDateString()).getTime() - new Date(req.body.start_date).getTime()) / (1000 * 3600 * 24)) * 8
+        }
+        req.db.get('projects').findOneAndUpdate({ _id: req.body.uid }, {
+            $set: {
+                completed_date: complete,
+                total_hours: tHours,
+                progress: req.body.progress
+            }
+        }, (e, docs) => {
+            res.redirect('/manageProject?message=Project Status Updated Successfully&uid=' + req.body.uid)
         })
     })
     app.post('/deleteProject', isLoggedIn, isAdmin, (req, res) => {

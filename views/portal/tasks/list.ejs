@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <%- include('../partials/navbar') %>
+        <!-- END NAVBAR -->
+
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar') %>
+        <!-- End of Sidebar -->
+        <div class="container-fluid">
+            <div class="main">
+                <div class="main-content">
+                    <div class="row">
+                        <!-- Sidebar -->
+                        <div id="leftSpacer"></div>
+                        <!-- End of Sidebar -->
+
+                        <div class="col-md-12" id="left">
+                            <% if (message.length > 0) { %>
+                            <div class="alert alert-info text-center"><%- message %></div>
+                            <% } %>
+                            <div class="panel">
+                                <%- include('components/list') %>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
+        </div>
+        <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <%- include('../partials/footer') %>
+    </div>
+    <!-- END WRAPPER -->
+    <%- include('../partials/scripts') %>
+
+</body>
+
+</html>

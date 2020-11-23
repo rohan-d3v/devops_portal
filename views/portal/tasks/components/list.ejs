@@ -1,6 +1,5 @@
 <div class="panel-heading">
     <h3 class="text-center">Current Task List</h3>
-    <a data-toggle="tab" role="tab" href="#createTask" class="btn btn-lg text-center btn-secondary">Create Task</a>
     <div class="right">
         <button type="button" class="btn-toggle-collapse">
             <i class="lnr lnr-chevron-up"></i>
@@ -17,7 +16,6 @@
                     <th>Status</th>
                     <th>Type</th>
                     <th>Due Date</th>
-                    <th>Assigned To</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,7 +26,6 @@
                     <th>Status</th>
                     <th>Type</th>
                     <th>Due Date</th>
-                    <th>Assigned To</th>
                     <th></th>
                 </tr>
             </tfoot>
@@ -41,18 +38,13 @@
                         if(tasklist[i].project.toString() == projectlist[k]._id.toString())
                             projectname = projectlist[k].name
                     }
-                    for (k=0; k < projectlist.length; k++){
-                        if(tasklist[i].person.toString() == userlist[k]._id.toString())
-                            person = userlist[k].name
-                    }
                     list += '<tr>';
                         list += '<td>' + tasklist[i].name + '</td>';
                         list += '<td>' + projectname + '</td>';
                         list += '<td>' + tasklist[i].status + '</td>'
                         list += '<td>' + tasklist[i].type + '</td>'
-                        list += '<td>' + tasklist[i].end_date +'</td>'
-                        list += '<td>' + person + '</td>';
-                        list += '<td><a class="btn btn-primary btn-block" href="/manageTask?uid='+ tasklist[i]._id + '">View Task</a></td>';
+                        list += '<td>' + tasklist[i].end_date + '</td>'
+                        list += '<td><a class="btn btn-primary btn-block" href="/myTask?uid='+ tasklist[i]._id + '">View Task</a></td>';
                     list += '</tr>';
                 }
                 %>

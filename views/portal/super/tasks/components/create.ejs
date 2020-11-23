@@ -1,12 +1,10 @@
 <div class="panel-heading text-center">
     <h3>Create new Task</h3>
     <a data-toggle="tab" role="tab" href="#taskList" class="btn btn-lg text-center btn-secondary">Task List</a>
-    <div class="alert alert-danger" id="passMatch" style="display:none">
-        Passwords Don't match</div>
-
+    
 </div>
 <div class="panel-body">
-    <form action="" method="post">
+    <form action="/createTask" method="post">
         <div class="col-md-6">
             <table class="table table-hover">
                 <tr>
@@ -14,12 +12,6 @@
                         <h4>Task Name</h4>
                     </th>
                     <td><input type="text" class="form-control " required name="task_name"></td>
-                </tr>
-                <tr>
-                    <th>
-                        <h4>Start Date</h4>
-                    </th>
-                    <td><input type="date" class="form-control " required name="start_date"></td>
                 </tr>
                 <tr>
                     <th>
@@ -48,7 +40,7 @@
                     <th>
                         <h4>Description</h4>
                     </th>
-                    <td><input type="text" class="form-control " required name="project_desc"></td>
+                    <td><input type="text" class="form-control " required name="task_desc"></td>
                 </tr>
                 <tr>
                     <th>
@@ -91,6 +83,6 @@
             </table>
         </div>
 
-        <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Project" />
+        <input type="submit" id="passBtn" class="btn btn-lg btn-block btn-primary" value="Create Task" />
     </form>
 </div>
