@@ -32,21 +32,20 @@ module.exports = function (app, passport, mongodb) {
     app.post('/updateMyTask', (req, res) => {
         var tHours = start_date = null;
         if (req.body.taskStatus == "In Progress") start_date = new Date().toLocaleDateString()
-        if (req.body.taskStatus == "QA & Review") {
-            req.db.get('tasks').findOne({ _id: req.body.uid }, {}, (e, docs) => {
-                tHours = (((new Date().toLocaleDateString() - new Date(docs.start_date).toLocaleDateString)/(1000*3600*24))) * 8
-                req.db.get('tasks').findOneAndUpdate({ _id: req.body.uid }, {
-                    $set: {
-                        start_date: docs.start_date,
-                        total_hours: tHours,
-                        status: req.body.taskStatus
-                    }
-                }, (e, docs) => {
-                    res.redirect('/myTask?message=Project Status Updated Successfully&uid=' + req.body.uid)
-                })
+        if (req.body.taskStatus == "QA & Review") tHours = (((new Date().toLocaleDateString() - new Date(docs.start_date).toLocaleDateString) / (1000 * 3600 * 24))) * 8
+        req.db.get('tasks').findOne({ _id: req.body.uid }, {}, (e, docs) => {
+            var date = start_date; if(docs.start_date) date = docs.start_date
+            req.db.get('tasks').findOneAndUpdate({ _id: req.body.uid }, {
+                $set: {
+                    start_date: date,
+                    total_hours: tHours,
+                    status: req.body.taskStatus
+                }
+            }, (e, docs) => {
+                res.redirect('/myTask?message=Task Status Updated Successfully&uid=' + req.body.uid)
             })
-            tHours = ((new Date(new Date().toLocaleDateString()).getTime() - new Date(req.body.start_date).getTime()) / (1000 * 3600 * 24)) * 8
-        }
+        })
+
 
     })
 }
