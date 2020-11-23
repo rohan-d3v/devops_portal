@@ -39,8 +39,9 @@
                                                 class="btn btn-lg btn-info">Update User Information</a>
                                             <a data-toggle="tab" role="tab" href="#updatePass"
                                                 class="btn btn-lg btn-info">Update User Password</a>
+                                            <a data-toggle="tab" role="tab" href="#userTasks"
+                                                class="btn btn-lg btn-info">Manage User Tasks</a>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="panel-body" style="margin-top:15%">
@@ -53,26 +54,31 @@
                                                             <th>
                                                                 <h4>Name</h4>
                                                             </th>
-                                                            <td><input type="text" class="form-control " required name="name" value="<%- person.name %>"></td>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="name" value="<%- person.name %>"></td>
                                                         </tr>
                                                         <tr>
                                                             <th>
                                                                 <h4>Email</h4>
                                                             </th>
-                                                            <td><input type="text" class="form-control " required name="email" value="<%- person.email %>"></td>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="email" value="<%- person.email %>"></td>
                                                         </tr>
                                                         <tr>
                                                             <th>
                                                                 <h4>Designation</h4>
                                                             </th>
-                                                            <td><input type="text" class="form-control " required name="designation" value="<%- person.designation %>"></td>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="designation"
+                                                                    value="<%- person.designation %>"></td>
                                                         </tr>
                                                         <tr>
                                                             <th>
                                                                 <h4>Date of Joining</h4>
                                                             </th>
                                                             <td>
-                                                                <input type="date" required name="doj" class="form-control" value="<%- person.doj %>">
+                                                                <input type="date" required name="doj"
+                                                                    class="form-control" value="<%- person.doj %>">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -80,7 +86,8 @@
                                                                 <h4>Address</h4>
                                                             </th>
                                                             <td>
-                                                                <input type="text" required name="address" class="form-control" value="<%- person.address %>">
+                                                                <input type="text" required name="address"
+                                                                    class="form-control" value="<%- person.address %>">
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -91,15 +98,19 @@
                                                             <th>
                                                                 <h4>Member ID</h4>
                                                             </th>
-                                                            <td><input type="text" class="form-control " required name="member_id" value="<%- person.member_id %>"></td>
+                                                            <td><input type="text" class="form-control " required
+                                                                    name="member_id" value="<%- person.member_id %>">
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th>
                                                                 <h4>Mobile</h4>
                                                             </th>
                                                             <td>
-                                                                <input type="text" name="mobile" required class="form-control" pattern="^[6789]\d{9}$"
-                                                                    title="invalid phone number" value="<%- person.mobile %>">
+                                                                <input type="text" name="mobile" required
+                                                                    class="form-control" pattern="^[6789]\d{9}$"
+                                                                    title="invalid phone number"
+                                                                    value="<%- person.mobile %>">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -114,13 +125,14 @@
                                                                 </select>
                                                             </td>
                                                         </tr>
-                                                       
+
                                                         <tr>
                                                             <th>
                                                                 <h4>Date of Birth</h4>
                                                             </th>
                                                             <td>
-                                                                <input type="date" required name="dob" class="form-control" value="<%- person.dob %>">
+                                                                <input type="date" required name="dob"
+                                                                    class="form-control" value="<%- person.dob %>">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -135,18 +147,20 @@
                                                                 <select class="form-control " name="gender">
                                                                     <option <%- opt1 %> value="male">Male</option>
                                                                     <option <%- opt2 %> value="female">Female</option>
-                                                                    <option <%- opt3 %> value="N/A">Custom/Prefer not to discuss</option>
+                                                                    <option <%- opt3 %> value="N/A">Custom/Prefer not to
+                                                                        discuss</option>
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                 </div>
-                                               
+
                                                 <input type="submit" class="btn btn-lg btn-block btn-primary"
                                                     value="Update User" />
+                                                <hr>
+                                                <a href="#deleteUserModal" data-toggle="modal"
+                                                    class="btn btn-danger btn-lg btn-block">Delete User</a>
                                             </form>
-                                            <hr>
-
                                         </div>
                                         <div class="tab-pane" id="updatePass" role="tabpanel">
                                             <form action="/updateUserPass" method="post">
@@ -181,27 +195,24 @@
                                             <hr>
 
                                         </div>
-                                        <hr>
-                                        <a href="#deleteUserModal" data-toggle="modal"
-                                            class="btn btn-danger btn-lg btn-block">Delete User</a>
-
-
+                                        <div class="tab-pane" id="userTasks" role="tabpanel"></div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
-
-                    <%- include('components/deleteModal') %>
                 </div>
-            </div>
-            <!-- END MAIN CONTENT -->
-        </div>
-        <!-- END MAIN -->
 
-        <div class="clearfix"></div>
-        <%- include('../../partials/footer') %>
+                <%- include('components/deleteModal') %>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->
+    </div>
+    <!-- END MAIN -->
+
+    <div class="clearfix"></div>
+    <%- include('../../partials/footer') %>
     </div>
     <!-- END WRAPPER -->
     <%- include('../../partials/scripts') %>

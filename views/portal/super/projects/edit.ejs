@@ -38,6 +38,8 @@
                                                 class="btn btn-lg btn-info">Update Project Information</a>
                                             <a data-toggle="tab" role="tab" href="#updateStatus"
                                                 class="btn btn-lg btn-info">Update Project Status</a>
+                                            <a data-toggle="tab" role="tab" href="#projectTasks"
+                                                class="btn btn-lg btn-info">Manage Project Tasks</a>
                                         </div>
                                     </div>
                                 </div>
@@ -110,12 +112,15 @@
                                                 <input type="submit" class="btn btn-lg btn-block btn-primary"
                                                     value="Update Project" />
                                             </form>
+                                            <hr>
+                                            <a href="#deleteProjectModal" data-toggle="modal"
+                                                class="btn btn-danger btn-lg btn-block">Delete Project</a>
                                         </div>
                                         <div class="tab-pane" id="updateStatus" role="tabpanel">
                                             <form action="/updateProjectStatus" method="post">
                                                 <input type="hidden" name="uid" value=<%- project._id %>>
-                                                <input type="hidden" required
-                                                                    name="start_date" value="<%- project.start_date %>">
+                                                <input type="hidden" required name="start_date"
+                                                    value="<%- project.start_date %>">
                                                 <table class="table table-hover">
                                                     <tr>
                                                         <th>
@@ -138,11 +143,8 @@
                                                     value="Update Project Status" />
                                             </form>
                                         </div>
+                                        <div class="tab-pane" id="projectTasks" role="tabpanel"></div>
                                     </div>
-                                    <hr>
-                                    <a href="#deleteProjectModal" data-toggle="modal"
-                                        class="btn btn-danger btn-lg btn-block">Delete Project</a>
-
                                 </div>
                             </div>
                         </div>
