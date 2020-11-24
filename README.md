@@ -40,14 +40,19 @@
 In order to install the project and all dependencies, enter in the project folder and run `npm install`
 
 ---
+### Setup Users
+
+- Rename `config/config.sample.js to config/config.js` and update the necssary details
+---
 
 ### Start the project
 
 ```bash
 npm start
 ```
+---
 
-### Setup the project
+### Setup Users
 
 - visit `localhost:2020/setupAdmin` to setup Admin
 - visit `localhost:2020/setupUser` to setup User
