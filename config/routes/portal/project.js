@@ -41,12 +41,15 @@ module.exports = function (app, passport, mongodb) {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('projects').findOne({ _id: req.query.uid }, {}, (e, project) => {
             req.db.get('users').find({}, {}, (e, userlist) => {
-                req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
-                    res.render('portal/super/projects/edit', {
-                        user: req.user, userlist: userlist, active: checkin.active,
-                        project: project, message: message, title: 'Manage Project'
+                req.db.get('tasks').find({project: project._id}, {}, (e, tasklist)=>{
+                    req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                        res.render('portal/super/projects/edit', {
+                            user: req.user, userlist: userlist, active: checkin.active, tasklist: tasklist,
+                            project: project, message: message, title: 'Manage Project'
+                        })
                     })
                 })
+                
             })
         })
     });

@@ -16,6 +16,7 @@ module.exports = function (app, passport, mongodb) {
     });
 
     app.post('/createTask', (req, res) => {
+        var path = '/manageTask'; if(req.body.optUrl) path = req.body.optUrl
         req.db.get('tasks').insert({
             name: req.body.task_name,
             start_date: null,
@@ -29,7 +30,7 @@ module.exports = function (app, passport, mongodb) {
             person: new mongodb.ObjectID(req.body.assignmentList),
             project: new mongodb.ObjectID(req.body.projectName)
         }, (e, docs) => {
-            res.redirect('/manageTasks?message=Task Created Successfully')
+            res.redirect(path+'?message=Task Created Successfully')
         })
     })
 

@@ -11,7 +11,7 @@ module.exports = (app, passport) =>{
                 time_out: req.body.timeTrack
             }
         }
-        req.db.get('timesheets').findOneAndUpdate({employee: req.user._id, date: new Date().toLocaleDateString},{
+        req.db.get('timesheets').findOneAndUpdate({employee: req.user._id, date: new Date().toLocaleDateString()},{
             $set: dataObj
         })
     })

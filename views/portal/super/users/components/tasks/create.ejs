@@ -3,7 +3,7 @@
 </div>
 <div class="panel-body">
     <form action="/createTask" method="post">
-        <input type="hidden" value="/manageProject" name="optUrl">
+        <input type="hidden" value="/manageUser" name="optUrl">
         <div class="col-md-6">
             <table class="table table-hover">
                 <tr>
@@ -49,21 +49,21 @@
                 </tr>
                 <tr>
                     <th>
-                        <h4>Assign People</h4>
+                        <h4>Project Name</h4>
                     </th>
                     <td>
-                        <select class="form-control " name="assignmentList" style="width:100%">
+                        <select class="form-control" name="projectName">
                             <% 
                                     var list=''
-                                    for (var i=0; i < userlist.length; i++){
-                                        list += '<option value='+userlist[i]._id+'>'+userlist[i].name+'</option>'
+                                    for (var i=0; i < projectlist.length; i++){
+                                        list += '<option value='+projectlist[i]._id+'>'+projectlist[i].name+'</option>'
                                     }
                                     %>
                             <%- list %>
                         </select>
                     </td>
                 </tr>
-                <input type="hidden" name="projectName" value=<%- project._id %>>
+                <input type="hidden" name="assignmentList" value=<%- person._id %>>
             </table>
         </div>
 

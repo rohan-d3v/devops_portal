@@ -51,12 +51,14 @@ module.exports = function (app, passport) {
     app.get('/manageUser', isLoggedIn, isAdmin, (req, res) => {
         var message = ""; if (req.query.message) message = req.query.message
         req.db.get('users').findOne({ _id: req.query.uid }, {}, function (e, docs) {
-            req.db.get('taxFiling').find({}, {}, (e, assignmentList) => {
-                req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
-                    res.render('portal/super/users/edit', {
-                        user: req.user, title: 'Edit User', active: checkin.active,
-                        person: docs, message: message
-                    });
+            req.db.get('projects').find({},{},(e, projectlist)=>{
+                req.db.get('tasks').find({ person: docs._id }, {}, (e, tasklist) => {
+                    req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
+                        res.render('portal/super/users/edit', {
+                            user: req.user, title: 'Edit User', active: checkin.active,
+                            person: docs, message: message, tasklist: tasklist, projectlist: projectlist
+                        });
+                    })
                 })
             })
         })

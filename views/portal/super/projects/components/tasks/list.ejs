@@ -1,0 +1,51 @@
+<div class="panel-heading">
+    <h3 class="text-center">Current Task List</h3>
+</div>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th>Assigned To</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th>Assigned To</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <%
+                var list = '';
+                for(i=0; i< tasklist.length; i++){
+                    var person = ''; 
+                    for (k=0; k < userlist.length; k++){
+                        if(tasklist[i].person.toString() == userlist[k]._id.toString())
+                            person = userlist[k].name
+                    }
+                    list += '<tr>';
+                        list += '<td>' + tasklist[i].name + '</td>';
+                        list += '<td>' + tasklist[i].status + '</td>'
+                        list += '<td>' + tasklist[i].type + '</td>'
+                        list += '<td>' + tasklist[i].end_date +'</td>'
+                        list += '<td>' + person + '</td>';
+                        list += '<td><a class="btn btn-primary btn-block" href="/manageTask?uid='+ tasklist[i]._id + '">View Task</a></td>';
+                    list += '</tr>';
+                }
+                %>
+                <%- list %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
