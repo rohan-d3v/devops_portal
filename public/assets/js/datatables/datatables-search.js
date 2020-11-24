@@ -2,7 +2,7 @@ $(function () {
   $('#dataTable').dataTable()
   $('#reportsTable tfoot th').each(function () {
     var title = $(this).text();
-    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+    $(this).html('<input type="text" placeholder="Search ' + title + '" style="width:100%"/>');
   });
   $('#reportsTable').dataTable({
     destroy: true,
@@ -22,5 +22,5 @@ $(function () {
       });
     }
   });
-  
+
 })

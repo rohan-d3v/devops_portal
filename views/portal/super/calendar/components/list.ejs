@@ -1,6 +1,7 @@
 <div class="panel-body">
     <div class="table-responsive">
-        <table class="table table-bordered" id="reportsTable" style="width:20%!important"cellspacing="0">
+        <table class="table table-bordered" id="reportsTable" cellspacing="0">
+            
             <thead>
                 <tr>
                     <th>Member</th>
@@ -9,6 +10,7 @@
                     <th>Out-time</th>
                     <th>Type</th>
                     <th>Notes</th>
+                    <th></th>
                 </tr>
             </thead>
             <tfoot>
@@ -19,6 +21,7 @@
                     <th>Out-time</th>
                     <th>Type</th>
                     <th>Notes</th>
+                    <th></th>
                 </tr>
             </tfoot>
             <tbody>
@@ -41,6 +44,7 @@
                         list += '<td>'+timesheets[i].time_out+'</td>'
                         list += '<td>'+workday+'</td>'
                         list += '<td>'+checkLate+'</td>'
+                        list += '<td><a class="btn btn-block btn-primary" href="#updateTimeSheet?uid="'+timesheets[i]._id+'>Update Timesheet</a></td>'
                     list += '</tr>'
                 }
                 %>
