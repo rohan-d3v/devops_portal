@@ -7,7 +7,7 @@ $(function () {
   $('#reportsTable').dataTable({
     destroy: true,
     dom: 'lBfrtip',
-    buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    buttons: ['csv', 'excel', 'pdf', 'print'],
     initComplete: function () {
       this.api().columns().every(function () {
         var that = this;
