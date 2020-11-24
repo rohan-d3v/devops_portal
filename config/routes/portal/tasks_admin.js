@@ -30,7 +30,10 @@ module.exports = function (app, passport, mongodb) {
             person: new mongodb.ObjectID(req.body.assignmentList),
             project: new mongodb.ObjectID(req.body.projectName)
         }, (e, docs) => {
-            res.redirect(path+'?message=Task Created Successfully')
+            var id = ''
+            if(path == '/manageUser') id=docs.person
+            if(path == '/manageProject') id=docs.project
+            res.redirect(path+'?message=Task Created Successfully&uid='+id)
         })
     })
 
