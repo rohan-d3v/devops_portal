@@ -48,7 +48,7 @@
                                                         if(tasklist[i].status  == "Yet to start") count1++
                                                         if(tasklist[i].status  == "In Progress") count2++
                                                         if(tasklist[i].status  == "QA & Review") count4++
-                                                        if(new Date(tasklist[i].end_date) > new Date()){
+                                                        if(new Date(tasklist[i].end_date) < new Date()){
                                                             if(tasklist[i].status != "QA & Review" && tasklist[i].status != "Completed" )
                                                                 count3++
                                                         }

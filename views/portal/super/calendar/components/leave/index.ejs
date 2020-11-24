@@ -1,0 +1,47 @@
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Days</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Member</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Days</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <%
+                var list = '';
+                for (i = 0; i < leaveList.length; i++){
+                    var member = '';
+                    for (k = 0; k < userlist.length; k++){
+                        if(userlist[k]._id.toString() == leaveList[i].member.toString())
+                            member = userlist[k].name
+                    }
+                    list += '<tr>'
+                        list += '<td>'+member+'</td>'
+                        list += '<td>'+leaveList[i].start_date+'</td>'
+                        list += '<td>'+leaveList[i].end_date+'</td>'
+                        list += '<td>'+leaveList[i].status+'</td>'
+                        list += '<td>'+leaveList[i].days+'</td>'
+                        list += '<td><a class="btn btn-block btn-primary" href="#updateLeaveStatus?uid='+leaveList[i]._id+'">Update Leave Status</a></td>'
+                }
+                %>
+                <%- list %>
+            </tbody>
+        </table>
+    </div>
+
+</div>

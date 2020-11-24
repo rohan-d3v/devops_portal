@@ -32,11 +32,11 @@
                                     <h3>Your Calendar</h3>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a data-toggle="tab" role="tab" href="#calendar"
-                                            class="btn btn-lg btn-info">Your Calendar</a>
+                                            class="btn btn-lg btn-info">Calendar</a>
                                         <a data-toggle="tab" role="tab" href="#applyLeave"
-                                            class="btn btn-lg btn-info">Day(s) Off Request</a>
+                                            class="btn btn-lg btn-info">Day(s) Off</a>
                                         <a data-toggle="tab" role="tab" href="#applyPermission"
-                                            class="btn btn-lg btn-info">Time Off Request</a>
+                                            class="btn btn-lg btn-info">Time Off</a>
                                     </div>
                                     <div class="right">
                                         <button type="button" class="btn-toggle-collapse">
@@ -49,10 +49,10 @@
                                         <%- include('components/list') %>
                                     </div>
                                     <div class="tab-pane" id="applyLeave" role="tabpanel">
-                                        <%- include('components/leave') %>
+                                        <%- include('components/leave/index') %>
                                     </div>
                                     <div class="tab-pane" id="applyPermission" role="tabpanel">
-                                        <%- include('components/permission') %>
+                                        <%- include('components/permission/index') %>
                                     </div>
                                 </div>
                             </div>

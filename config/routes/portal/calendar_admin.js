@@ -4,9 +4,11 @@ module.exports = function (app, passport, mongodb) {
         req.db.get('timesheets').find({}, {}, (e, timesheets) => {
             req.db.get('users').find({}, (e, userlist) => {
                 req.db.get('timesheets').findOne({ employee: req.user._id, date: new Date().toLocaleDateString() }, {}, (e, checkin) => {
-                    res.render('portal/super/calendar/index', {
-                        user: req.user, active: checkin.active, userlist: userlist,
-                        timesheets: timesheets, message: message, title: 'My Calendar'
+                    req.db.get('leaves').find({},{}, (e, leaveList)=>{
+                        res.render('portal/super/calendar/index', {
+                            user: req.user, active: checkin.active, userlist: userlist, leaveList: leaveList,
+                            timesheets: timesheets, message: message, title: 'My Calendar'
+                        })
                     })
                 })
             })

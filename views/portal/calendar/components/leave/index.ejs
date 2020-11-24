@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+    <li class="nav-item active">
+        <a class="nav-link" data-toggle="tab" href="#leaveList"
+            role="tab">List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#createLeave"
+            role="tab">Create</a>
+    </li>
+</ul>
+<div class="tab-content text-center">
+    <div class="tab-pane active" id="leaveList" role="tabpanel">
+        <%- include('list') %>
+    </div>
+    <div class="tab-pane" id="createLeave" role="tabpanel">
+        <%- include('create') %>
+    </div>
+</div>

@@ -24,7 +24,7 @@
                 var list = '';
                 for (i = 0; i < timesheets.length; i++){
                     var dateVar = Date.parse(timesheets[i].date+' '+timesheets[i].time_in)
-                    var checkVar = Date.parse(timesheets[i].date+' 9:30:00')
+                    var checkVar = Date.parse(timesheets[i].date+' 9:40:00')
                     var checkLate = ''; if(dateVar > checkVar) checkLate = 'Late'
                     var workday = 'Weekday'; 
                     if(new Date(timesheets[i].date).getDay() == 0 || new Date(timesheets[i].date).getDay() == 6) workday = 'Weekend'                   
