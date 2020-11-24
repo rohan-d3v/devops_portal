@@ -29,7 +29,7 @@ module.exports = (app) => {
                 time_in: null,
                 time_out: null
             }
-            db.get('timesheets').insert(dataObj)
+            req.db.get('timesheets').insert(dataObj)
             res.send({ message: 'Admin inserted successfully', data: docs })
         })
     })
@@ -78,8 +78,8 @@ module.exports = (app) => {
                     time_in: null,
                     time_out: null
                 }
-                db.get('timesheets').insert(dataObj, {})
-                db.get('timesheets').insert(dataObj2, {})
+                req.db.get('timesheets').insert(dataObj, {})
+                req.db.get('timesheets').insert(dataObj2, {})
                 var dataArr = []
                 dataArr[0] = docs; dataArr[1] = docs2
                 res.send({ message: 'Users inserted successfully', data: dataArr })
