@@ -32,7 +32,7 @@
 
 - Choose a folder project in your system and switch in `cd [folder path]`
 - Clone the repo in your folder path `git clone git+https://github.com/rohan-uxdev/devops_portal.git`
-- Rename `config/config.sample.js to config/config.js` and update the necssary details
+- Rename `config/config.sample.js` to `config/config.js` and update the necssary details
 
 ---
 
